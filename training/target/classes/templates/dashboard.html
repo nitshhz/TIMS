@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Dashboard</title>
+
+    <!-- connect css -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<!-- top bar -->
+<div class="navbar">
+    <span>Training Institute</span>
+    <a th:href="@{/logout}" class="link">Logout</a>
+</div>
+
+<div class="container">
+
+    <h2>Dashboard</h2>
+
+    <!-- cards -->
+    <div class="cards">
+
+        <div class="card c1">
+            <h3>Students</h3>
+            <p th:text="${students}"></p>
+        </div>
+
+        <div class="card c2">
+            <h3>Courses</h3>
+            <p th:text="${courses}"></p>
+        </div>
+
+        <div class="card c3">
+            <h3>Trainers</h3>
+            <p th:text="${trainers}"></p>
+        </div>
+
+        <div class="card c4">
+            <h3>Fees</h3>
+            <p th:text="${fees}"></p>
+        </div>
+
+    </div>
+
+    <hr>
+
+    <!-- navigation links -->
+    <div class="links">
+        <a th:href="@{/students}">Students</a>
+        <a th:href="@{/courses}">Courses</a>
+        <a th:href="@{/trainers}">Trainers</a>
+        <a th:href="@{/fees}">Fees</a>
+    </div>
+
+</div>
+
+</body>
+</html>

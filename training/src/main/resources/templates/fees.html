@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Fees</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<div class="navbar">
+    <span>Fee Management</span>
+    <a th:href="@{/dashboard}">Back</a>
+</div>
+
+<div class="container">
+
+    <h2>Payment Records</h2>
+
+    <form th:action="@{/saveFee}" method="post">
+        <input type="text" name="studentName" placeholder="Student Name" required>
+        <input type="text" name="course" placeholder="Course" required>
+        <input type="text" name="amount" placeholder="Amount" required>
+        <input type="text" name="date" placeholder="Date" required>
+        <button type="submit">Add Payment</button>
+    </form>
+
+    <br><br>
+
+    <table border="1">
+
+        <tr>
+            <th>ID</th>
+            <th>Student</th>
+            <th>Course</th>
+            <th>Amount</th>
+            <th>Date</th>
+            <th>Action</th>
+        </tr>
+
+        <tr th:each="f : ${list}">
+            <td th:text="${f.id}"></td>
+            <td th:text="${f.studentName}"></td>
+            <td th:text="${f.course}"></td>
+            <td th:text="${f.amount}"></td>
+            <td th:text="${f.date}"></td>
+
+            <td>
+                <a th:href="@{'/deleteFee/' + ${f.id}}">
+                    <button>Delete</button>
+                </a>
+            </td>
+        </tr>
+
+    </table>
+
+</div>
+
+</body>
+</html>

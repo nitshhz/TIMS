@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Trainers</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<div class="navbar">
+    <span>Trainer Management</span>
+    <a th:href="@{/dashboard}">Back</a>
+</div>
+
+<div class="container">
+
+    <h2>Trainer List</h2>
+
+    <form th:action="@{/saveTrainer}" method="post">
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="text" name="subject" placeholder="Subject" required>
+        <input type="text" name="phone" placeholder="Phone" required>
+        <button type="submit">Add Trainer</button>
+    </form>
+
+    <br><br>
+
+    <table border="1">
+
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Subject</th>
+            <th>Phone</th>
+            <th>Action</th>
+        </tr>
+
+        <tr th:each="t : ${list}">
+            <td th:text="${t.id}"></td>
+            <td th:text="${t.name}"></td>
+            <td th:text="${t.subject}"></td>
+            <td th:text="${t.phone}"></td>
+
+            <td>
+                <a th:href="@{'/deleteTrainer/' + ${t.id}}">
+                    <button>Delete</button>
+                </a>
+            </td>
+        </tr>
+
+    </table>
+
+</div>
+
+</body>
+</html>
