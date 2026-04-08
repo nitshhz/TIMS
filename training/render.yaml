@@ -3,6 +3,7 @@ services:
   - type: web
     name: training-dashboard
     env: docker
+    rootDir: training
     region: singapore
     plan: free
     envVars:
