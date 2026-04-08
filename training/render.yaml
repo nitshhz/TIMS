@@ -1,0 +1,30 @@
+services:
+  # The frontend web service running your Spring Boot via Docker
+  - type: web
+    name: training-dashboard
+    env: docker
+    region: ohio
+    plan: free
+    envVars:
+      - key: PORT
+        value: 8080
+      - key: DB_DIALECT
+        value: org.hibernate.dialect.PostgreSQLDialect
+      - key: DB_URL
+        fromDatabase:
+          name: training-postgres
+          property: connectionString
+      - key: DB_USER
+        fromDatabase:
+          name: training-postgres
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: training-postgres
+          property: password
+
+  # The connected PostgreSQL Database that comes free on Render
+  - type: pgo
+    name: training-postgres
+    plan: free
+    region: ohio
