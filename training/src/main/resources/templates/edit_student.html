@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Student | Modern Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div class="navbar">
+    <span>InstituteHQ</span>
+    <a th:href="@{/students}"><- Back to Students</a>
+</div>
+
+<div class="box">
+    <h2>Edit Student</h2>
+    <p class="auth-header-text">Modify enrollment details for this student.</p>
+
+    <form th:action="@{/saveStudent}" method="post">
+        
+        <!-- HIDDEN ID to trigger an update -->
+        <input type="hidden" name="id" th:value="${student.id}">
+
+        <label>Student Name</label>
+        <input type="text" name="name" th:value="${student.name}" required>
+
+        <label>Assigned Course</label>
+        <select name="course.id" required>
+            <option th:each="c : ${courses}" th:value="${c.id}" th:text="${c.name}" th:selected="${c.id == (student.course != null ? student.course.id : 0)}"></option>
+        </select>
+
+        <label>Phone Number</label>
+        <input type="text" name="phone" th:value="${student.phone}" required pattern="[0-9]{10}">
+
+        <button type="submit" style="margin-top: 15px;">Apply Changes</button>
+        
+        <a th:href="@{/students}" class="link-btn" style="text-align: center; margin-top: 10px;">Cancel</a>
+
+    </form>
+</div>
+
+<script th:src="@{/js/theme.js}"></script>
+</body>
+</html>

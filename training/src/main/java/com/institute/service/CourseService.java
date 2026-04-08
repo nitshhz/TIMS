@@ -18,6 +18,10 @@ public class CourseService {
         return repo.findAll();
     }
 
+    public Course getById(int id) {
+        return repo.findById(id).orElse(null);
+    }
+
     public void save(Course c) {
         repo.save(c);
     }

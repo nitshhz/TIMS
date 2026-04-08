@@ -1,35 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Login</title>
-
-    <!-- connect css -->
-    <link rel="stylesheet" href="css/style.css">
+    <title>Login | Modern Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 
 <body>
 
 <div class="box">
 
-    <h2>Login</h2>
+    <h2>Welcome Back 👋</h2>
+    <p class="auth-header-text">Sign in to manage your institute.</p>
+
+    <!-- registration success message -->
+    <div th:if="${param.registered}" style="color: var(--success); background: #ecfdf5; padding: 12px; border-radius: var(--radius-sm); font-size: 14px; margin-bottom: 20px;">
+        Registration successful! Please login.
+    </div>
+
+    <!-- error message -->
+    <div th:if="${param.error}" style="color: var(--danger); background: #fef2f2; padding: 12px; border-radius: var(--radius-sm); font-size: 14px; margin-bottom: 20px;">
+        Invalid username or password.
+    </div>
 
     <!-- login form -->
-    <form action="/login" method="post">
+    <form th:action="@{/login}" method="post">
 
-        <!-- username -->
         <label>Username</label>
-        <input type="text" name="username" required>
+        <input type="text" name="username" placeholder="john.doe" required>
 
-        <!-- password -->
         <label>Password</label>
-        <input type="password" name="password" required>
+        <input type="password" name="password" placeholder="••••••••" required>
 
-        <!-- button -->
-        <button>Login</button>
+        <button type="submit" style="margin-top: 15px;">Secure Login</button>
+        
+        <a th:href="@{/register}" class="link-btn" style="text-align: center; margin-top: 10px;">Don't have an account? Sign up</a>
 
     </form>
 
 </div>
 
+<script th:src="@{/js/theme.js}"></script>
 </body>
 </html>

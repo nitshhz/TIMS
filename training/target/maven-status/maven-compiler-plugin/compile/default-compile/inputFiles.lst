@@ -1,8 +1,10 @@
+C:\Users\nithish\Downloads\workspace\training\training\src\main\java\com\institute\config\SecurityConfig.java
 C:\Users\nithish\Downloads\workspace\training\training\src\main\java\com\institute\controller\CourseController.java
 C:\Users\nithish\Downloads\workspace\training\training\src\main\java\com\institute\controller\FeeController.java
 C:\Users\nithish\Downloads\workspace\training\training\src\main\java\com\institute\controller\MainController.java
 C:\Users\nithish\Downloads\workspace\training\training\src\main\java\com\institute\controller\StudentController.java
 C:\Users\nithish\Downloads\workspace\training\training\src\main\java\com\institute\controller\TrainerController.java
+C:\Users\nithish\Downloads\workspace\training\training\src\main\java\com\institute\model\AppUser.java
 C:\Users\nithish\Downloads\workspace\training\training\src\main\java\com\institute\model\Course.java
 C:\Users\nithish\Downloads\workspace\training\training\src\main\java\com\institute\model\Fee.java
 C:\Users\nithish\Downloads\workspace\training\training\src\main\java\com\institute\model\Student.java
@@ -11,7 +13,9 @@ C:\Users\nithish\Downloads\workspace\training\training\src\main\java\com\institu
 C:\Users\nithish\Downloads\workspace\training\training\src\main\java\com\institute\repository\FeeRepo.java
 C:\Users\nithish\Downloads\workspace\training\training\src\main\java\com\institute\repository\StudentRepo.java
 C:\Users\nithish\Downloads\workspace\training\training\src\main\java\com\institute\repository\TrainerRepo.java
+C:\Users\nithish\Downloads\workspace\training\training\src\main\java\com\institute\repository\UserRepository.java
 C:\Users\nithish\Downloads\workspace\training\training\src\main\java\com\institute\service\CourseService.java
+C:\Users\nithish\Downloads\workspace\training\training\src\main\java\com\institute\service\CustomUserDetailsService.java
 C:\Users\nithish\Downloads\workspace\training\training\src\main\java\com\institute\service\FeeService.java
 C:\Users\nithish\Downloads\workspace\training\training\src\main\java\com\institute\service\StudentService.java
 C:\Users\nithish\Downloads\workspace\training\training\src\main\java\com\institute\service\TrainerService.java

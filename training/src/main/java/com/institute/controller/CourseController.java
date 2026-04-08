@@ -20,9 +20,27 @@ public class CourseController {
     }
 
     @PostMapping("/saveCourse")
-    public String save(com.institute.model.Course c) {
+    public String save(@RequestParam(required = false) Integer id, 
+                       @RequestParam String name, 
+                       @RequestParam String duration, 
+                       @RequestParam Double fee) {
+        com.institute.model.Course c;
+        if (id != null) {
+            c = s.getById(id);
+        } else {
+            c = new com.institute.model.Course();
+        }
+        c.setName(name);
+        c.setDuration(duration);
+        c.setFee(fee);
         s.save(c);
         return "redirect:/courses";
+    }
+
+    @GetMapping("/editCourse/{id}")
+    public String edit(@PathVariable int id, Model m) {
+        m.addAttribute("course", s.getById(id));
+        return "edit_course";
     }
 
     @GetMapping("/deleteCourse/{id}")

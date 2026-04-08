@@ -1,59 +1,72 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head>
-    <title>Students</title>
+    <title>Manage Students | Modern Dashboard</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
-
 <body>
 
 <div class="navbar">
-    <span>Student Management</span>
-    <a th:href="@{/dashboard}">Back</a>
+    <span>InstituteHQ</span>
+    <a th:href="@{/dashboard}"><- Back to Dashboard</a>
 </div>
 
 <div class="container">
 
-    <h2>Students List</h2>
+    <div class="flex-header">
+        <div>
+            <h2>Student Directory</h2>
+            <p style="color: var(--text-muted); font-size: 15px;">Enroll and manage your students.</p>
+        </div>
+    </div>
 
-    <!-- Add Student Form -->
-    <form th:action="@{/saveStudent}" method="post">
-        <input type="text" name="name" placeholder="Name" required>
-        <input type="text" name="course" placeholder="Course" required>
-        <input type="text" name="phone" placeholder="Phone" required>
-        <button type="submit">Add Student</button>
+    <!-- inline premium form -->
+    <form th:action="@{/saveStudent}" method="post" class="flex-row" style="gap: 15px;">
+        <div style="flex: 1; min-width: 200px;">
+            <input type="text" name="name" placeholder="Student Name" required>
+        </div>
+        <div style="flex: 1; min-width: 200px;">
+            <select name="course.id" required>
+                <option value="" disabled selected>Assign Course</option>
+                <option th:each="c : ${courses}" th:value="${c.id}" th:text="${c.name}"></option>
+            </select>
+        </div>
+        <div style="flex: 1; min-width: 200px;">
+            <input type="text" name="phone" placeholder="Phone (10 digits)" required pattern="[0-9]{10}">
+        </div>
+        <button type="submit" style="margin-top: 0; padding: 12px 30px;">+ Enroll</button>
     </form>
 
-    <br><br>
-
-    <table border="1">
-
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Course</th>
-            <th>Phone</th>
-            <th>Action</th>
-        </tr>
-
-        <!-- Dynamic Data -->
-        <tr th:each="s : ${list}">
-            <td th:text="${s.id}"></td>
-            <td th:text="${s.name}"></td>
-            <td th:text="${s.course}"></td>
-            <td th:text="${s.phone}"></td>
-
-            <td>
-                <a th:href="@{'/deleteStudent/' + ${s.id}}">
-                    <button>Delete</button>
-                </a>
-            </td>
-        </tr>
-
-    </table>
+    <div class="table-wrapper">
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Student Name</th>
+                <th>Enrolled Course</th>
+                <th>Phone</th>
+                <th style="text-align: right;">Action</th>
+            </tr>
+            <tr th:each="s : ${list}">
+                <td th:text="'#' + ${s.id}" style="color: var(--text-muted); font-weight: 500;"></td>
+                <td th:text="${s.name}" style="font-weight: 600;"></td>
+                <td>
+                    <span style="background: rgba(79, 70, 229, 0.1); color: var(--primary); padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 600;" th:text="${s.course != null ? s.course.name : 'Unassigned'}"></span>
+                </td>
+                <td th:text="${s.phone}"></td>
+                <td style="text-align: right; display: flex; gap: 8px; justify-content: flex-end;">
+                    <a th:href="@{'/editStudent/' + ${s.id}}" style="text-decoration: none;">
+                        <button class="btn-edit">Edit</button>
+                    </a>
+                    <a th:href="@{'/deleteStudent/' + ${s.id}}" style="text-decoration: none;">
+                        <button class="btn-danger">Disenroll</button>
+                    </a>
+                </td>
+            </tr>
+        </table>
+    </div>
 
 </div>
 
+<script th:src="@{/js/theme.js}"></script>
 </body>
 </html>

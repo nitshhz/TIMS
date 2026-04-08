@@ -18,6 +18,10 @@ public class FeeService {
         return repo.findAll();
     }
 
+    public Fee getById(int id) {
+        return repo.findById(id).orElse(null);
+    }
+
     public void save(Fee f) {
         repo.save(f);
     }

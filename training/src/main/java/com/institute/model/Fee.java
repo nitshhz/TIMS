@@ -1,20 +1,43 @@
 package com.institute.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
+import java.time.LocalDate;
 
 @Entity
+@Table(name = "fees")
 public class Fee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String studentName;
-    private String course;
-    private String amount;
-    private String date;
+    @NotNull(message = "Amount is required")
+    @Positive(message = "Amount must be a positive value")
+    @Column(nullable = false)
+    private Double amount;
 
-    // getters setters
+    @NotNull(message = "Payment date is required")
+    @Column(name = "payment_date", nullable = false)
+    private LocalDate date;
+
+    @NotBlank(message = "Payment mode is required")
+    @Column(name = "payment_mode", nullable = false, length = 30)
+    private String paymentMode;
+
+    // Many fee records belong to one student
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "student_id", nullable = false)
+    @NotNull(message = "Student is required")
+    private Student student;
+
+    // Many fee records belong to one course
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "course_id", nullable = false)
+    @NotNull(message = "Course is required")
+    private Course course;
+
+    // ── Getters & Setters ──
 
     public int getId() {
         return id;
@@ -24,35 +47,43 @@ public class Fee {
         this.id = id;
     }
 
-    public String getStudentName() {
-        return studentName;
-    }
-
-    public void setStudentName(String studentName) {
-        this.studentName = studentName;
-    }
-
-    public String getCourse() {
-        return course;
-    }
-
-    public void setCourse(String course) {
-        this.course = course;
-    }
-
-    public String getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
-    public void setAmount(String amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 
-    public String getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    public String getPaymentMode() {
+        return paymentMode;
+    }
+
+    public void setPaymentMode(String paymentMode) {
+        this.paymentMode = paymentMode;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
     }
 }

@@ -12,23 +12,23 @@ import com.institute.repository.StudentRepo;
 public class StudentService {
 
     @Autowired
-    StudentRepo r;
+    StudentRepo repo;
 
-    // get all students
     public List<Student> getAll() {
-        return r.findAll();
+        return repo.findAll();
     }
 
-    // save student
+    public Student getById(int id) {
+        return repo.findById(id).orElse(null);
+    }
+
     public void save(Student s) {
-        if(s != null) {
-            r.save(s);
+        if (s != null) {
+            repo.save(s);
         }
     }
 
-    // delete student
     public void delete(int id) {
-        r.deleteById(id);
+        repo.deleteById(id);
     }
-
 }

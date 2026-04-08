@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Fee Record | Modern Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div class="navbar">
+    <span>InstituteHQ</span>
+    <a th:href="@{/fees}"><- Back to Fees</a>
+</div>
+
+<div class="box">
+    <h2>Edit Transaction</h2>
+    <p class="auth-header-text">Alter the recorded financial information.</p>
+
+    <!-- edit form -->
+    <form th:action="@{/saveFee}" method="post">
+        
+        <!-- HIDDEN ID to trigger an update -->
+        <input type="hidden" name="id" th:value="${fee.id}">
+
+        <label>Student</label>
+        <select name="student.id" required>
+            <option th:each="s : ${students}" th:value="${s.id}" th:text="${s.name}" th:selected="${s.id == (fee.student != null ? fee.student.id : 0)}"></option>
+        </select>
+
+        <label>Tied Course</label>
+        <select name="course.id" required>
+            <option th:each="c : ${courses}" th:value="${c.id}" th:text="${c.name}" th:selected="${c.id == (fee.course != null ? fee.course.id : 0)}"></option>
+        </select>
+
+        <label>Total Amount (₹)</label>
+        <input type="number" step="0.01" name="amount" th:value="${fee.amount}" required min="0.01">
+
+        <label>Payment Date</label>
+        <input type="date" name="paymentDate" th:value="${fee.date}" required>
+
+        <label>Transaction Method</label>
+        <select name="paymentMode" required>
+            <option value="Cash" th:selected="${fee.paymentMode == 'Cash'}">Cash</option>
+            <option value="Credit Card" th:selected="${fee.paymentMode == 'Credit Card'}">Credit Card</option>
+            <option value="UPI" th:selected="${fee.paymentMode == 'UPI'}">UPI / Transfer</option>
+        </select>
+
+        <button type="submit" style="margin-top: 15px;">Commit Changes</button>
+        
+        <a th:href="@{/fees}" class="link-btn" style="text-align: center; margin-top: 10px;">Cancel</a>
+
+    </form>
+</div>
+
+<script th:src="@{/js/theme.js}"></script>
+</body>
+</html>

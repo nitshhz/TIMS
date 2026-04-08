@@ -18,6 +18,10 @@ public class TrainerService {
         return repo.findAll();
     }
 
+    public Trainer getById(int id) {
+        return repo.findById(id).orElse(null);
+    }
+
     public void save(Trainer t) {
         repo.save(t);
     }

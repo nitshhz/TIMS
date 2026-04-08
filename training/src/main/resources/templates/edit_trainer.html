@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Trainer | Modern Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div class="navbar">
+    <span>InstituteHQ</span>
+    <a th:href="@{/trainers}"><- Back to Trainers</a>
+</div>
+
+<div class="box">
+    <h2>Edit Instructor Profile</h2>
+    <p class="auth-header-text">Update the details and assignment for this trainer.</p>
+
+    <!-- edit form -->
+    <form th:action="@{/saveTrainer}" method="post">
+        
+        <!-- HIDDEN ID to trigger an update -->
+        <input type="hidden" name="id" th:value="${trainer.id}">
+
+        <label>Full Name</label>
+        <input type="text" name="name" th:value="${trainer.name}" required>
+
+        <label>Specialization / Subject</label>
+        <input type="text" name="subject" th:value="${trainer.subject}" required>
+
+        <label>Contact Number (10 digits)</label>
+        <input type="text" name="phone" th:value="${trainer.phone}" required pattern="[0-9]{10}">
+
+        <label>Assigned Course (Optional)</label>
+        <select name="course.id">
+            <option value="" th:selected="${trainer.course == null}">Floating (No Course)</option>
+            <option th:each="c : ${courses}" th:value="${c.id}" th:text="${c.name}" th:selected="${c.id == (trainer.course != null ? trainer.course.id : 0)}"></option>
+        </select>
+
+        <button type="submit" style="margin-top: 15px;">Update Profile</button>
+        
+        <a th:href="@{/trainers}" class="link-btn" style="text-align: center; margin-top: 10px;">Cancel</a>
+
+    </form>
+</div>
+
+<script th:src="@{/js/theme.js}"></script>
+</body>
+</html>
