@@ -1,5 +1,7 @@
 # Training Institute Management System (TIMS)
 
+**🟢 Live Demo:** [training-dashboard-bnic.onrender.com](https://training-dashboard-bnic.onrender.com)
+
 A complete, full-stack educational administration dashboard crafted with Java Spring Boot, Hibernate, Thymeleaf, and a modernized dynamic interface.
 
 ## 🚀 Features
