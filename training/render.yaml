@@ -24,7 +24,7 @@ services:
           property: password
 
   # The connected PostgreSQL Database that comes free on Render
-  - type: postgres
+  - type: psql
     name: training-postgres
     plan: free
     region: ohio
