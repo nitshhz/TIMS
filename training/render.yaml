@@ -3,7 +3,7 @@ services:
   - type: web
     name: training-dashboard
     env: docker
-    region: ohio
+    region: singapore
     plan: free
     envVars:
       - key: PORT
@@ -23,8 +23,8 @@ services:
           name: training-postgres
           property: password
 
+databases:
   # The connected PostgreSQL Database that comes free on Render
-  - type: psql
-    name: training-postgres
+  - name: training-postgres
     plan: free
-    region: ohio
+    region: singapore
